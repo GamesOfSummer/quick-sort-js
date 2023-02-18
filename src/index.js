@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var helpers_1 = require("./helpers");
 function quickSort(array) {
-    if (array.length <= 1) {
+    if (array.length < 2) {
         return array;
     }
     else {
@@ -10,17 +10,17 @@ function quickSort(array) {
         var leftSmallerArray = [];
         var rightBiggerArray = [];
         for (var i = 0; i < array.length; i++) {
-            if (array[i] <= pivotPoint) {
+            if (array[i] < pivotPoint) {
                 leftSmallerArray.push(array[i]);
             }
             else {
                 rightBiggerArray.push(array[i]);
             }
         }
-        quickSort(leftSmallerArray);
-        quickSort(rightBiggerArray);
+        var sortedLeft = quickSort(leftSmallerArray);
+        var sortedRight = quickSort(rightBiggerArray);
         var newArray = [];
-        return newArray.concat(leftSmallerArray, pivotPoint, rightBiggerArray);
+        return newArray.concat(sortedLeft, pivotPoint, sortedRight);
     }
 }
 (0, helpers_1.consoleStart)();
